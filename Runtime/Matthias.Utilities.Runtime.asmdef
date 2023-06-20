@@ -1,7 +1,9 @@
 {
     "name": "Matthias.Utilities.Runtime",
+    "rootNamespace": "Matthias.Utilities",
     "references": [],
     "includePlatforms": [],
+    "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,
     "precompiledReferences": [],
