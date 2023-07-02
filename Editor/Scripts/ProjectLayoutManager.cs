@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
+#if UNITY_EDITOR
 namespace Matthias.Utilities
 {
     public class ProjectLayoutManager : EditorWindow
@@ -136,3 +137,4 @@ namespace Matthias.Utilities
         }
     }
 }
+#endif
