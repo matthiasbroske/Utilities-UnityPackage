@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Matthias.Utilities
 {
-    public class Easings
+    public static class Easings
     {
         public static float EaseInQuad(float t) => t * t;
         public static float EaseOutQuad(float t) => 1 - (1 - t) * (1 - t);
