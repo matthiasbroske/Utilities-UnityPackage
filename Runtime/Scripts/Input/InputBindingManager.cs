@@ -8,8 +8,8 @@ namespace Matthias.Utilities
     /// <summary>
     /// Utility methods for dealing with input icons.
     /// </summary>
-    [CreateAssetMenu(fileName = "Input Icon Helper", menuName = "Input/Icon Helper")]
-    public class InputIconHelper : ScriptableObject
+    [CreateAssetMenu(fileName = "InputBindingManager", menuName = "Utilities/Input/Binding Manager")]
+    public class InputBindingManager : ScriptableObject
     {
         public struct Binding
         {

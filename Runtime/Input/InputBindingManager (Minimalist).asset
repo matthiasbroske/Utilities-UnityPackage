@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ae49f15274e104ce4af75d1d8fb2de22, type: 3}
-  m_Name: Input Icon Helper
+  m_Name: InputBindingManager (Minimalist)
   m_EditorClassIdentifier: 
   _keyboardMouseIconMap:
     _inputIcons:
