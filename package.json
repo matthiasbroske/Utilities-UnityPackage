@@ -5,5 +5,7 @@
     "version": "0.1.0",
     "unity": "2022.3",
     "author": { "name": "Matthias Broske", "email": "tias@broske.com" },
-    "hideInEditor": "false"
+    "hideInEditor": "false",
+    "license": "MIT",
+    "licensesUrl": "https://github.com/matthiasbroske/Utilities-UnityPackage/blob/main/LICENSE"
 }
