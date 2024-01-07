@@ -1,5 +1,8 @@
 # Utilities
 
+## About
+A collection of basic utilities to assist with game development in Unity.
+
 ## Installation
 1. In Unity, open ```Window -> Package Manager```. 
 2. Click the ```+``` button
