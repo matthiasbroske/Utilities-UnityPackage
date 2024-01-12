@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Matthias.Utilities
@@ -15,22 +16,22 @@ namespace Matthias.Utilities
             get => _value;
             set
             {
-                Debug.Log("I'm setting the value, shoops.");
                 _value = value;
                 PlayerPrefs.SetInt(_uniqueKey, BoolToInt(_value));
                 PlayerPrefs.Save();
+                OnValueChanged?.Invoke(_value);
             }
         }
 
+        public event Action<bool> OnValueChanged;
+
         void OnEnable()
         {
-            Debug.Log("I keep enabling, hehe");
             _value = IntToBool(PlayerPrefs.GetInt(_uniqueKey, BoolToInt(_defaultValue)));
         }
 
         public void ResetToDefault()
         {
-            Debug.Log("someone's calling reset!");
             Value = _defaultValue;
         }
 

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Matthias.Utilities
@@ -18,8 +19,11 @@ namespace Matthias.Utilities
                 _value = value;
                 PlayerPrefs.SetString(_uniqueKey, _value);
                 PlayerPrefs.Save();
+                OnValueChanged?.Invoke(_value);
             }
         }
+
+        public event Action<string> OnValueChanged;
 
         void OnEnable()
         {

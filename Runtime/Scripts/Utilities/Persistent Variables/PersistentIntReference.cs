@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Matthias.Utilities
@@ -18,9 +19,12 @@ namespace Matthias.Utilities
                 _value = value;
                 PlayerPrefs.SetInt(_uniqueKey, _value);
                 PlayerPrefs.Save();
+                OnValueChanged?.Invoke(_value);
             }
         }
 
+        public event Action<int> OnValueChanged;
+        
         void OnEnable()
         {
             _value = PlayerPrefs.GetInt(_uniqueKey, _defaultValue);
