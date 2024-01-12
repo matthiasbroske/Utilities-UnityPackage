@@ -23,15 +23,21 @@ namespace Matthias.Utilities
         protected override void OnEnable()
         {
             base.OnEnable();
-            _tabButtonGroup.RegisterTabButton(this);
-            _onClickHandler = delegate { _tabButtonGroup.SelectTab(this); };
-            _onClick.AddListener(_onClickHandler);
+            if (_tabButtonGroup != null)
+            {
+                _tabButtonGroup.RegisterTabButton(this);
+                _onClickHandler = delegate { _tabButtonGroup.SelectTab(this); };
+                _onClick.AddListener(_onClickHandler);
+            }
         }
         
         protected override void OnDisable()
         {
-            _tabButtonGroup.UnregisterTabButton(this);
-            _onClick.RemoveListener(_onClickHandler);
+            if (_tabButtonGroup != null)
+            {
+                _tabButtonGroup.UnregisterTabButton(this);
+                _onClick.RemoveListener(_onClickHandler);
+            }
             base.OnDisable();
         }
         
