@@ -19,5 +19,8 @@ A collection of basic utilities to assist with game development in Unity.
   - Select ```Assets -> Project Layout -> 3. Clean Kept Folders``` to remove ```.keep``` files from non-empty folders.
 
 ### Runtime Scripts
+- [`PersistentVariableReference`](Runtime/Scripts/Utilities/Persistent%20Variables/PersistentVariableReference.cs): A ScriptableObject reference to a variable saved using PlayerPrefs, perfect for persistently saving settings and the like. Supports `float`, `int`, `string` and `bool` types.
+  - [`PersistentFloatSliderInitializer`](Runtime/Scripts/Utilities/Persistent%20Variables/PersistentFloatSliderInitializer.cs): Initializes a slider to the value of a `PersistentFloatReference` and links them such that any changes to the slider automatically update the persistent variable and vice-versa.
+  - [`PersistentBoolToggleInitializer`](Runtime/Scripts/Utilities/Persistent%20Variables/PersistentBoolToggleInitializer.cs): Initializes a toggle to the value of a `PersistentBoolReference` and links them such that any changes to the toggle automatically update the persistent variable and vice-versa.
 - [`Easings`](Runtime/Scripts/Utilities/Easings.cs): A collection of commonly used easing functions.
 
