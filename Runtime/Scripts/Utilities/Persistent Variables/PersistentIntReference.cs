@@ -1,38 +1,18 @@
-using System;
 using UnityEngine;
 
 namespace Matthias.Utilities
 {
     [CreateAssetMenu(fileName = "PersistentInt", menuName = "Utilities/Persistent Reference/Int")]
-    public class PersistentIntReference : ScriptableObject, IPersistentVariable<int>
+    public class PersistentIntReference : PersistentVariableReference<int>
     {
-        [SerializeField] private int _defaultValue;
-        [SerializeField] private string _uniqueKey;
-        
-        private int _value;
-
-        public int Value
+        protected override int GetSavedValue()
         {
-            get => _value;
-            set
-            {
-                _value = value;
-                PlayerPrefs.SetInt(_uniqueKey, _value);
-                PlayerPrefs.Save();
-                OnValueChanged?.Invoke(_value);
-            }
+            return PlayerPrefs.GetInt(_uniqueKey, _defaultValue);
         }
 
-        public event Action<int> OnValueChanged;
-        
-        void OnEnable()
+        protected override void SetSavedValue(int value)
         {
-            _value = PlayerPrefs.GetInt(_uniqueKey, _defaultValue);
-        }
-
-        public void ResetToDefault()
-        {
-            Value = _defaultValue;
+            PlayerPrefs.SetInt(_uniqueKey, value);
         }
     }
 }

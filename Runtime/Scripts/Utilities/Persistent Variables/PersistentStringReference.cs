@@ -1,38 +1,18 @@
-using System;
 using UnityEngine;
 
 namespace Matthias.Utilities
 {
     [CreateAssetMenu(fileName = "PersistentString", menuName = "Utilities/Persistent Reference/String")]
-    public class PersistentStringReference : ScriptableObject, IPersistentVariable<string>
+    public class PersistentStringReference : PersistentVariableReference<string>
     {
-        [SerializeField] private string _defaultValue;
-        [SerializeField] private string _uniqueKey;
-        
-        private string _value;
-
-        public string Value
+        protected override string GetSavedValue()
         {
-            get => _value;
-            set
-            {
-                _value = value;
-                PlayerPrefs.SetString(_uniqueKey, _value);
-                PlayerPrefs.Save();
-                OnValueChanged?.Invoke(_value);
-            }
+            return PlayerPrefs.GetString(_uniqueKey, _defaultValue);
         }
 
-        public event Action<string> OnValueChanged;
-
-        void OnEnable()
+        protected override void SetSavedValue(string value)
         {
-            _value = PlayerPrefs.GetString(_uniqueKey, _defaultValue);
-        }
-
-        public void ResetToDefault()
-        {
-            Value = _defaultValue;
+            PlayerPrefs.SetString(_uniqueKey, value);
         }
     }
 }

@@ -1,38 +1,18 @@
-using System;
 using UnityEngine;
 
 namespace Matthias.Utilities
 {
     [CreateAssetMenu(fileName = "PersistentBool", menuName = "Utilities/Persistent Reference/Bool")]
-    public class PersistentBoolReference : ScriptableObject, IPersistentVariable<bool>
+    public class PersistentBoolReference : PersistentVariableReference<bool>
     {
-        [SerializeField] private bool _defaultValue;
-        [SerializeField] private string _uniqueKey;
-        
-        private bool _value;
-
-        public bool Value
+        protected override bool GetSavedValue()
         {
-            get => _value;
-            set
-            {
-                _value = value;
-                PlayerPrefs.SetInt(_uniqueKey, BoolToInt(_value));
-                PlayerPrefs.Save();
-                OnValueChanged?.Invoke(_value);
-            }
+            return IntToBool(PlayerPrefs.GetInt(_uniqueKey, BoolToInt(_defaultValue)));
         }
 
-        public event Action<bool> OnValueChanged;
-
-        void OnEnable()
+        protected override void SetSavedValue(bool value)
         {
-            _value = IntToBool(PlayerPrefs.GetInt(_uniqueKey, BoolToInt(_defaultValue)));
-        }
-
-        public void ResetToDefault()
-        {
-            Value = _defaultValue;
+            PlayerPrefs.SetInt(_uniqueKey, BoolToInt(value));
         }
 
         private int BoolToInt(bool boolean) => boolean ? 1 : 0;

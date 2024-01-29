@@ -1,38 +1,18 @@
-using System;
 using UnityEngine;
 
 namespace Matthias.Utilities
 {
     [CreateAssetMenu(fileName = "PersistentFloat", menuName = "Utilities/Persistent Reference/Float")]
-    public class PersistentFloatReference : ScriptableObject, IPersistentVariable<float>
+    public class PersistentFloatReference : PersistentVariableReference<float>
     {
-        [SerializeField] private float _defaultValue;
-        [SerializeField] private string _uniqueKey;
-        
-        private float _value;
-
-        public float Value
+        protected override float GetSavedValue()
         {
-            get => _value;
-            set
-            {
-                _value = value;
-                PlayerPrefs.SetFloat(_uniqueKey, _value);
-                PlayerPrefs.Save();
-                OnValueChanged?.Invoke(_value);
-            }
+            return PlayerPrefs.GetFloat(_uniqueKey, _defaultValue);
         }
 
-        public event Action<float> OnValueChanged;
-        
-        void OnEnable()
+        protected override void SetSavedValue(float value)
         {
-            _value = PlayerPrefs.GetFloat(_uniqueKey, _defaultValue);
-        }
-
-        public void ResetToDefault()
-        {
-            Value = _defaultValue;
+            PlayerPrefs.SetFloat(_uniqueKey, value);
         }
     }
 }
