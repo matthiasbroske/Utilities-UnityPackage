@@ -1,5 +1,4 @@
 using System;
-using Newtonsoft.Json;
 using UnityEngine;
 
 namespace Matthias.Utilities
@@ -35,7 +34,7 @@ namespace Matthias.Utilities
                         PlayerPrefs.SetString(_uniqueKey, valueAsString);
                         break;
                     default:
-                        PlayerPrefs.SetString(_uniqueKey, JsonConvert.SerializeObject(_value));
+                        PlayerPrefs.SetString(_uniqueKey, JsonUtility.ToJson(_value));
                         break;
                 }
                 PlayerPrefs.Save();
@@ -58,7 +57,7 @@ namespace Matthias.Utilities
                     _value = (T)Convert.ChangeType(PlayerPrefs.GetString(_uniqueKey, defaultValueAsString), typeof(T));
                     break;
                 default:
-                    _value = JsonConvert.DeserializeObject<T>(PlayerPrefs.GetString(_uniqueKey, JsonConvert.SerializeObject(defaultValue)));
+                    _value = JsonUtility.FromJson<T>(PlayerPrefs.GetString(_uniqueKey, JsonUtility.ToJson(defaultValue)));
                     break;
             }
         }
