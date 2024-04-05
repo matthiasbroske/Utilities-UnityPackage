@@ -1,3 +1,4 @@
+#if ENABLE_INPUT_SYSTEM
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -110,3 +111,4 @@ namespace Matthias.Utilities
         }
     }
 }
+#endif

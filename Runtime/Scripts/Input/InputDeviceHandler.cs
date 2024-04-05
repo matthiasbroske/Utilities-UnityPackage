@@ -1,3 +1,4 @@
+#if ENABLE_INPUT_SYSTEM
 using System;
 using System.Linq;
 using UnityEngine;
@@ -59,3 +60,4 @@ namespace Matthias.Utilities
         }
     }
 }
+#endif
