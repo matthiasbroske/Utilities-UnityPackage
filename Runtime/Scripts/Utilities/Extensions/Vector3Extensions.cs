@@ -2,6 +2,18 @@ using UnityEngine;
 
 namespace Matthias.Utilities
 {
+    public static class Vector2Extensions
+    {
+        public static Vector2 RotateBy(this Vector2 v, float angle, bool inDegrees = true)
+        {
+            float theta = inDegrees ? angle * Mathf.Deg2Rad : angle;
+            return new Vector2(
+                v.x * Mathf.Cos(theta) - v.y * Mathf.Sin(theta),
+                v.x * Mathf.Sin(theta) + v.y * Mathf.Cos(theta)
+            );
+        }
+    }
+    
     public static class Vector3Extensions
     {
         public static Vector3 Floor(this Vector3 v)
